@@ -65,11 +65,20 @@ function start()
 	
 	for (i=0; i<=34; i++)
 	{
-		tresc_diva = tresc_diva + '<div class="litera">'+litery[i]+'</div>';
+		var element = "lit" +i;
+		
+		tresc_diva = tresc_diva + '<div class="litera" onclick="sprawdz('+i+')" id="'+element+'">'+litery[i]+'</div>';
 		if ((i+1) % 7 ==0) /*operator modulo %, reszta z dzielenia przez 7=0 */tresc_diva = tresc_diva + '<div style="clear:both;"></div>';
 	}
 	
 	document.getElementById("alfabet").innerHTML = tresc_diva;
 	
+	
+	
 	wypisz_haslo();
 }
+	function sprawdz(nr)
+	{
+		alert(nr);
+		
+	}
