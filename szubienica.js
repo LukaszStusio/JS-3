@@ -79,6 +79,12 @@ function start()
 }
 	function sprawdz(nr)
 	{
-		alert(nr);
+		for(i=0; i<dlugosc; i++)
+		{
+			if(haslo.charAt(i) == litery[nr])
+			{
+				alert(i);
+			}
+		}
 		
 	}
