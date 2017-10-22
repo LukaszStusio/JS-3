@@ -68,23 +68,33 @@ function start()
 		var element = "lit" +i;
 		
 		tresc_diva = tresc_diva + '<div class="litera" onclick="sprawdz('+i+')" id="'+element+'">'+litery[i]+'</div>';
-		if ((i+1) % 7 ==0) /*operator modulo %, reszta z dzielenia przez 7=0 */tresc_diva = tresc_diva + '<div style="clear:both;"></div>';
+		if ((i+1) % 7 ==0) /*operator modulo %, czyli reszta z dzielenia, tutaj przez 7 */tresc_diva = tresc_diva + '<div style="clear:both;"></div>';
 	}
 	
 	document.getElementById("alfabet").innerHTML = tresc_diva;
 	
-	
-	
 	wypisz_haslo();
 }
+
+String.prototype.ustawZnak = function(miejsce, znak)
+/*dodaję do klasy String nową (prototype) funkcję o nazwie ustawZnak, której mi brakuje a której producent tak jakby nie przewidział */
+{
+	if (miejsce > this.length -1) return this.toString(); /*test, zapobiega żądaniu podmianki znaku w łańcuchu, jeśli ten się już skończył, np. podmień mi znak 10 gdy łąńcuch ma tylko 6 znaków (byłby problem z żądaniem dostępu do pamięci która nie jest zarezerwowana dla tematu) return.ths*/ 
+	else return this.substr(0, miejsce) + znak + this.substr(miejsce+1);
+}
+
 	function sprawdz(nr)
 	{
+		
+		
 		for(i=0; i<dlugosc; i++)
 		{
 			if(haslo.charAt(i) == litery[nr])
 			{
-				alert(i);
+				/*alert(i);*/
+				/*haslo1.charAt(i) = litery[nr]; taki zapis wywali error: invalid left hand side cośtam assigment w konsoli, funkcja charAt w tej postaci dokonuje odczytu a nie zapisu, potrzebna nowa funkcja stworzona od zera: patrz String.prototype... */
+				haslo1 = haslo1.ustawZnak(i,litery[nr]);
 			}
 		}
-		
+		wypisz_haslo();
 	}
